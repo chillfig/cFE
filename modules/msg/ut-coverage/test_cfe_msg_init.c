@@ -62,6 +62,8 @@ void Test_MSG_Init(void)
     memset(&cmd, 0xFF, sizeof(cmd));
     msgidval_exp = 0;
 
+    UtAssert_INT32_EQ(CFE_MSG_Init(CFE_MSG_PTR(cmd), CFE_SB_ValueToMsgId(msgidval_exp), 0), CFE_MSG_BAD_ARGUMENT);
+
     CFE_UtAssert_SUCCESS(CFE_MSG_Init(CFE_MSG_PTR(cmd), CFE_SB_ValueToMsgId(msgidval_exp), sizeof(cmd)));
     UT_DisplayPkt(CFE_MSG_PTR(cmd), 0);
     CFE_UtAssert_SUCCESS(CFE_MSG_GetMsgId(CFE_MSG_PTR(cmd), &msgid_act));
